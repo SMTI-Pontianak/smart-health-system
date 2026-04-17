@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div class="app-container">
         <aside class="sidebar">
@@ -56,7 +58,7 @@
 
             <div id="form-section" class="content-section">
                 <form id="health-form" class="glass-card">
-                    
+
                     <!-- Section 1: Personal Information -->
                     <div class="form-section">
                         <h2 class="section-title">Personal Information</h2>
@@ -94,11 +96,13 @@
                         <div class="form-grid">
                             <div class="form-group full-width">
                                 <label for="allergies">Allergies</label>
-                                <input type="text" id="allergies" placeholder="e.g. Peanuts, Penicillin (Leave empty if none)">
+                                <input type="text" id="allergies"
+                                    placeholder="e.g. Peanuts, Penicillin (Leave empty if none)">
                             </div>
                             <div class="form-group full-width">
                                 <label for="injuries">Past Severe Injuries</label>
-                                <input type="text" id="injuries" placeholder="e.g. Broken right arm 2019 (Leave empty if none)">
+                                <input type="text" id="injuries"
+                                    placeholder="e.g. Broken right arm 2019 (Leave empty if none)">
                             </div>
                             <div class="form-group">
                                 <label for="seizures">Past Seizures</label>
@@ -120,7 +124,8 @@
                             </div>
                             <div class="form-group full-width">
                                 <label for="otherSymptoms">Other Diseases or Symptoms</label>
-                                <textarea id="otherSymptoms" rows="2" placeholder="Mention any other symptoms..."></textarea>
+                                <textarea id="otherSymptoms" rows="2"
+                                    placeholder="Mention any other symptoms..."></textarea>
                             </div>
                             <div class="form-group full-width">
                                 <label for="vaccinations">Vaccination History</label>
@@ -215,7 +220,8 @@
     <!-- jsPDF for PDF generation -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
-    
+
     <script src="app.js"></script>
 </body>
+
 </html>

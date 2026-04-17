@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const SQL = await initSqlJs({
             locateFile: file => `https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.8.0/${file}`
         });
-        
+
         const savedData = localStorage.getItem('sqliteDb');
         if (savedData) {
             // Load existing
@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             );
         `);
         console.log("Database initialized.");
-    } catch(err) {
+    } catch (err) {
         console.error("Failed to load SQL.js", err);
         alert("Failed to initialize database.");
     }
@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const form = document.getElementById('health-form');
     form.addEventListener('submit', (e) => {
         e.preventDefault();
-        if(!db) return alert("Database is not ready!");
+        if (!db) return alert("Database is not ready!");
 
         const values = [
             document.getElementById('name').value,
@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             saveDatabase();
             alert("Record successfully saved to SQL database!");
             form.reset();
-        } catch(err) {
+        } catch (err) {
             console.error(err);
             alert("Error saving record: " + err.message);
         }
@@ -133,10 +133,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     const loadRecords = () => {
         const tbody = document.getElementById('records-tbody');
         tbody.innerHTML = '';
-        if(!db) return;
+        if (!db) return;
 
         const res = db.exec("SELECT id, name, age, gender, bp FROM medical_history");
-        if(res.length > 0) {
+        if (res.length > 0) {
             res[0].values.forEach(row => {
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
@@ -162,7 +162,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         // Check if form has at least a name
         const name = document.getElementById('name').value;
-        if(!name) return alert("Please fill the Name field before exporting.");
+        if (!name) return alert("Please fill the Name field before exporting.");
 
         doc.setFont("helvetica", "bold");
         doc.setFontSize(18);
@@ -176,7 +176,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             ["Place & Date of Birth", `${document.getElementById('placeOfBirth').value}, ${document.getElementById('dateOfBirth').value}`],
             ["Age", document.getElementById('age').value],
             ["Gender", document.getElementById('gender').value],
-            
+
             ["Medical History", ""],
             ["Allergies", document.getElementById('allergies').value || "None"],
             ["Severe Injuries", document.getElementById('injuries').value || "None"],
@@ -206,8 +206,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             body: data,
             theme: 'grid',
             headStyles: { fillColor: [59, 130, 246] },
-            didParseCell: function(data) {
-                if(data.row.raw[1] === "") {
+            didParseCell: function (data) {
+                if (data.row.raw[1] === "") {
                     data.cell.styles.fillColor = [220, 220, 220];
                     data.cell.styles.fontStyle = 'bold';
                 }
@@ -221,7 +221,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     window.exportSinglePdf = (id) => {
         const stmt = db.prepare("SELECT * FROM medical_history WHERE id = ?");
         stmt.bind([id]);
-        if(stmt.step()) {
+        if (stmt.step()) {
             const row = stmt.getAsObject();
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
@@ -238,7 +238,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 ["Place & Date of Birth", `${row.placeOfBirth}, ${row.dateOfBirth}`],
                 ["Age", row.age.toString()],
                 ["Gender", row.gender],
-                
+
                 ["Medical History", ""],
                 ["Allergies", row.allergies || "None"],
                 ["Severe Injuries", row.injuries || "None"],
@@ -267,8 +267,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                 startY: 40,
                 body: data,
                 theme: 'grid',
-                didParseCell: function(data) {
-                    if(data.row.raw[1] === "") {
+                didParseCell: function (data) {
+                    if (data.row.raw[1] === "") {
                         data.cell.styles.fillColor = [220, 220, 220];
                         data.cell.styles.fontStyle = 'bold';
                     }
@@ -282,7 +282,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // 6. DB Reset
     document.getElementById('btn-reset-db').addEventListener('click', () => {
-        if(confirm("Are you sure you want to delete all database records? This cannot be undone.")) {
+        if (confirm("Are you sure you want to delete all database records? This cannot be undone.")) {
             localStorage.removeItem('sqliteDb');
             location.reload();
         }
