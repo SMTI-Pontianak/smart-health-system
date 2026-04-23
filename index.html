@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Smart Health System - SMK-SMTI Pontianak</title>
-    <meta name="description" content="Medical history recording system for SMK-SMTI Pontianak healthcare facility.">
+    <meta name="description" content="Sistem pencatatan riwayat medis untuk fasilitas kesehatan SMK-SMTI Pontianak.">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -15,37 +15,37 @@
         <aside class="sidebar">
             <div class="sidebar-header">
                 <h2>SMK-SMTI Pontianak</h2>
-                <p>Smart Health System</p>
+                <p>Sistem Kesehatan Cerdas</p>
             </div>
             <nav class="sidebar-nav">
-                <a href="#" class="active" id="nav-add">New Record</a>
-                <a href="#" id="nav-view">View Records</a>
+                <a href="#" class="active" id="nav-add">Catatan Baru</a>
+                <a href="#" id="nav-view">Lihat Catatan</a>
             </nav>
             <div class="sidebar-footer">
-                <button id="btn-reset-db" class="btn-danger">Clear Database</button>
+                <button id="btn-reset-db" class="btn-danger">Hapus Database</button>
             </div>
         </aside>
 
         <main class="main-content">
             <header class="top-header">
-                <h1 id="page-title">Medical History Form</h1>
+                <h1 id="page-title">Formulir Riwayat Medis</h1>
             </header>
 
             <div id="view-section" class="content-section" style="display: none;">
                 <div class="glass-card">
                     <div class="table-actions">
-                        <h3>Saved Records (SQL Database)</h3>
+                        <h3>Catatan Tersimpan (Database SQL)</h3>
                     </div>
                     <div class="table-responsive">
                         <table id="records-table">
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Age</th>
-                                    <th>Gender</th>
-                                    <th>Blood Pressure</th>
-                                    <th>Actions</th>
+                                    <th>Nama</th>
+                                    <th>Umur</th>
+                                    <th>Jenis Kelamin</th>
+                                    <th>Tekanan Darah</th>
+                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody id="records-tbody">
@@ -61,30 +61,30 @@
 
                     <!-- Section 1: Personal Information -->
                     <div class="form-section">
-                        <h2 class="section-title">Personal Information</h2>
+                        <h2 class="section-title">Informasi Pribadi</h2>
                         <div class="form-grid">
                             <div class="form-group">
-                                <label for="name">Full Name</label>
+                                <label for="name">Nama Lengkap</label>
                                 <input type="text" id="name" required placeholder="John Doe">
                             </div>
                             <div class="form-group">
-                                <label for="placeOfBirth">Place of Birth</label>
+                                <label for="placeOfBirth">Tempat Lahir</label>
                                 <input type="text" id="placeOfBirth" required placeholder="Pontianak">
                             </div>
                             <div class="form-group">
-                                <label for="dateOfBirth">Date of Birth</label>
+                                <label for="dateOfBirth">Tanggal Lahir</label>
                                 <input type="date" id="dateOfBirth" required>
                             </div>
                             <div class="form-group">
-                                <label for="age">Age</label>
+                                <label for="age">Umur</label>
                                 <input type="number" id="age" required placeholder="16" min="10" max="100">
                             </div>
                             <div class="form-group">
-                                <label for="gender">Gender</label>
+                                <label for="gender">Jenis Kelamin</label>
                                 <select id="gender" required>
-                                    <option value="" disabled selected>Select Gender</option>
-                                    <option value="Male">Male</option>
-                                    <option value="Female">Female</option>
+                                    <option value="" disabled selected>Pilih Jenis Kelamin</option>
+                                    <option value="Male">Laki-laki</option>
+                                    <option value="Female">Perempuan</option>
                                 </select>
                             </div>
                         </div>
@@ -92,78 +92,78 @@
 
                     <!-- Section 2: Medical History -->
                     <div class="form-section">
-                        <h2 class="section-title">Medical History</h2>
+                        <h2 class="section-title">Riwayat Medis</h2>
                         <div class="form-grid">
                             <div class="form-group full-width">
-                                <label for="allergies">Allergies</label>
+                                <label for="allergies">Alergi</label>
                                 <input type="text" id="allergies"
-                                    placeholder="e.g. Peanuts, Penicillin (Leave empty if none)">
+                                    placeholder="mis. Kacang, Penisilin (Kosongkan jika tidak ada)">
                             </div>
                             <div class="form-group full-width">
-                                <label for="injuries">Past Severe Injuries</label>
+                                <label for="injuries">Cedera Parah Sebelumnya</label>
                                 <input type="text" id="injuries"
-                                    placeholder="e.g. Broken right arm 2019 (Leave empty if none)">
+                                    placeholder="mis. Patah lengan kanan 2019 (Kosongkan jika tidak ada)">
                             </div>
                             <div class="form-group">
-                                <label for="seizures">Past Seizures</label>
+                                <label for="seizures">Riwayat Kejang</label>
                                 <select id="seizures" required>
-                                    <option value="No">No</option>
-                                    <option value="Yes">Yes</option>
+                                    <option value="No">Tidak</option>
+                                    <option value="Yes">Ya</option>
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="transfusions">Past Blood Transfusions</label>
+                                <label for="transfusions">Riwayat Transfusi Darah</label>
                                 <select id="transfusions" required>
-                                    <option value="No">No</option>
-                                    <option value="Yes">Yes</option>
+                                    <option value="No">Tidak</option>
+                                    <option value="Yes">Ya</option>
                                 </select>
                             </div>
                             <div class="form-group full-width">
-                                <label for="congenital">Congenital Diseases</label>
-                                <input type="text" id="congenital" placeholder="Any congenital diseases...">
+                                <label for="congenital">Penyakit Bawaan</label>
+                                <input type="text" id="congenital" placeholder="Penyakit bawaan apa pun...">
                             </div>
                             <div class="form-group full-width">
-                                <label for="otherSymptoms">Other Diseases or Symptoms</label>
+                                <label for="otherSymptoms">Penyakit atau Gejala Lainnya</label>
                                 <textarea id="otherSymptoms" rows="2"
-                                    placeholder="Mention any other symptoms..."></textarea>
+                                    placeholder="Sebutkan gejala lainnya..."></textarea>
                             </div>
                             <div class="form-group full-width">
-                                <label for="vaccinations">Vaccination History</label>
-                                <input type="text" id="vaccinations" placeholder="e.g. COVID-19, Polio...">
+                                <label for="vaccinations">Riwayat Vaksinasi</label>
+                                <input type="text" id="vaccinations" placeholder="mis. COVID-19, Polio...">
                             </div>
                         </div>
                     </div>
 
                     <!-- Section 3: Family History -->
                     <div class="form-section">
-                        <h2 class="section-title">Family History</h2>
+                        <h2 class="section-title">Riwayat Keluarga</h2>
                         <div class="form-grid">
                             <div class="form-group">
-                                <label for="famTb">Tuberculosis (TB)</label>
+                                <label for="famTb">Tuberkulosis (TBC)</label>
                                 <select id="famTb" required>
-                                    <option value="No">No</option>
-                                    <option value="Yes">Yes</option>
+                                    <option value="No">Tidak</option>
+                                    <option value="Yes">Ya</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="famDiabetes">Diabetes</label>
                                 <select id="famDiabetes" required>
-                                    <option value="No">No</option>
-                                    <option value="Yes">Yes</option>
+                                    <option value="No">Tidak</option>
+                                    <option value="Yes">Ya</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="famHep">Hepatitis</label>
                                 <select id="famHep" required>
-                                    <option value="No">No</option>
-                                    <option value="Yes">Yes</option>
+                                    <option value="No">Tidak</option>
+                                    <option value="Yes">Ya</option>
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="famAsthma">Asthma</label>
+                                <label for="famAsthma">Asma</label>
                                 <select id="famAsthma" required>
-                                    <option value="No">No</option>
-                                    <option value="Yes">Yes</option>
+                                    <option value="No">Tidak</option>
+                                    <option value="Yes">Ya</option>
                                 </select>
                             </div>
                         </div>
@@ -171,26 +171,26 @@
 
                     <!-- Section 4: Physical Checkup -->
                     <div class="form-section">
-                        <h2 class="section-title">Physical Checkup & Vitals</h2>
+                        <h2 class="section-title">Pemeriksaan Fisik & Tanda Vital</h2>
                         <div class="form-grid">
                             <div class="form-group">
-                                <label for="height">Height (cm)</label>
+                                <label for="height">Tinggi Badan (cm)</label>
                                 <input type="number" step="0.1" id="height" required placeholder="170">
                             </div>
                             <div class="form-group">
-                                <label for="weight">Weight (kg)</label>
+                                <label for="weight">Berat Badan (kg)</label>
                                 <input type="number" step="0.1" id="weight" required placeholder="60">
                             </div>
                             <div class="form-group">
-                                <label for="bp">Blood Pressure (mmHg)</label>
+                                <label for="bp">Tekanan Darah (mmHg)</label>
                                 <input type="text" id="bp" required placeholder="120/80">
                             </div>
                             <div class="form-group">
-                                <label for="hr">Heart Rate (bpm)</label>
+                                <label for="hr">Denyut Jantung (bpm)</label>
                                 <input type="number" id="hr" required placeholder="75">
                             </div>
                             <div class="form-group">
-                                <label for="temp">Body Temperature (°C)</label>
+                                <label for="temp">Suhu Tubuh (°C)</label>
                                 <input type="number" step="0.1" id="temp" required placeholder="36.5">
                             </div>
                         </div>
@@ -198,16 +198,16 @@
 
                     <!-- Section 5: Remarks -->
                     <div class="form-section">
-                        <h2 class="section-title">Remarks (Optional)</h2>
+                        <h2 class="section-title">Catatan Tambahan (Opsional)</h2>
                         <div class="form-group full-width">
-                            <label for="remarks">Additional Healthcare Staff Remarks</label>
-                            <textarea id="remarks" rows="3" placeholder="Any additional notes..."></textarea>
+                            <label for="remarks">Catatan Tambahan Staf Kesehatan</label>
+                            <textarea id="remarks" rows="3" placeholder="Catatan tambahan apa pun..."></textarea>
                         </div>
                     </div>
 
                     <div class="form-actions">
-                        <button type="button" id="btn-pdf" class="btn-secondary">Export to PDF</button>
-                        <button type="submit" id="btn-save" class="btn-primary">Save to Database</button>
+                        <button type="button" id="btn-pdf" class="btn-secondary">Ekspor ke PDF</button>
+                        <button type="submit" id="btn-save" class="btn-primary">Simpan ke Database</button>
                     </div>
                 </form>
             </div>

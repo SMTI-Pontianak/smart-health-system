@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         navView.classList.remove('active');
         formSection.style.display = 'block';
         viewSection.style.display = 'none';
-        pageTitle.textContent = 'Medical History Form';
+        pageTitle.textContent = 'Formulir Riwayat Medis';
     });
 
     navView.addEventListener('click', (e) => {
@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         navAdd.classList.remove('active');
         formSection.style.display = 'none';
         viewSection.style.display = 'block';
-        pageTitle.textContent = 'Saved Records';
+        pageTitle.textContent = 'Catatan Tersimpan';
         loadRecords();
     });
 
@@ -70,10 +70,10 @@ document.addEventListener('DOMContentLoaded', async () => {
                 remarks TEXT
             );
         `);
-        console.log("Database initialized.");
+        console.log("Database diinisialisasi.");
     } catch (err) {
-        console.error("Failed to load SQL.js", err);
-        alert("Failed to initialize database.");
+        console.error("Gagal memuat SQL.js", err);
+        alert("Gagal menginisialisasi database.");
     }
 
     // Utility: Save DB to LocalStorage
@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const form = document.getElementById('health-form');
     form.addEventListener('submit', (e) => {
         e.preventDefault();
-        if (!db) return alert("Database is not ready!");
+        if (!db) return alert("Database belum siap!");
 
         const values = [
             document.getElementById('name').value,
@@ -121,11 +121,11 @@ document.addEventListener('DOMContentLoaded', async () => {
                 height, weight, bp, hr, temp, remarks
             ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`, values);
             saveDatabase();
-            alert("Record successfully saved to SQL database!");
+            alert("Catatan berhasil disimpan ke database SQL!");
             form.reset();
         } catch (err) {
             console.error(err);
-            alert("Error saving record: " + err.message);
+            alert("Kesalahan menyimpan catatan: " + err.message);
         }
     });
 
@@ -156,49 +156,49 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // 5. PDF Generation (Form values)
     document.getElementById('btn-pdf').addEventListener('click', () => {
-        if (!window.jspdf) return alert('PDF Engine loading...');
+        if (!window.jspdf) return alert('Memuat mesin PDF...');
         const { jsPDF } = window.jspdf;
         const doc = new jsPDF();
 
         // Check if form has at least a name
         const name = document.getElementById('name').value;
-        if (!name) return alert("Please fill the Name field before exporting.");
+        if (!name) return alert("Silakan isi kolom Nama sebelum mengekspor.");
 
         doc.setFont("helvetica", "bold");
         doc.setFontSize(18);
         doc.text("SMK-SMTI Pontianak", 105, 20, null, null, "center");
         doc.setFontSize(14);
-        doc.text("Student Medical History Report", 105, 30, null, null, "center");
+        doc.text("Laporan Riwayat Medis Siswa", 105, 30, null, null, "center");
 
         const data = [
-            ["Personal Information", ""],
-            ["Name", name],
-            ["Place & Date of Birth", `${document.getElementById('placeOfBirth').value}, ${document.getElementById('dateOfBirth').value}`],
-            ["Age", document.getElementById('age').value],
-            ["Gender", document.getElementById('gender').value],
+            ["Informasi Pribadi", ""],
+            ["Nama", name],
+            ["Tempat & Tanggal Lahir", `${document.getElementById('placeOfBirth').value}, ${document.getElementById('dateOfBirth').value}`],
+            ["Umur", document.getElementById('age').value],
+            ["Jenis Kelamin", document.getElementById('gender').value],
 
-            ["Medical History", ""],
-            ["Allergies", document.getElementById('allergies').value || "None"],
-            ["Severe Injuries", document.getElementById('injuries').value || "None"],
-            ["Past Seizures", document.getElementById('seizures').value],
-            ["Blood Transfusions", document.getElementById('transfusions').value],
-            ["Congenital Diseases", document.getElementById('congenital').value || "None"],
-            ["Other Symptoms", document.getElementById('otherSymptoms').value || "None"],
-            ["Vaccinations", document.getElementById('vaccinations').value || "None"],
+            ["Riwayat Medis", ""],
+            ["Alergi", document.getElementById('allergies').value || "Tidak ada"],
+            ["Cedera Parah Sebelumnya", document.getElementById('injuries').value || "Tidak ada"],
+            ["Riwayat Kejang", document.getElementById('seizures').value],
+            ["Riwayat Transfusi Darah", document.getElementById('transfusions').value],
+            ["Penyakit Bawaan", document.getElementById('congenital').value || "Tidak ada"],
+            ["Gejala Lainnya", document.getElementById('otherSymptoms').value || "Tidak ada"],
+            ["Riwayat Vaksinasi", document.getElementById('vaccinations').value || "Tidak ada"],
 
-            ["Family History", ""],
-            ["Tuberculosis (TB)", document.getElementById('famTb').value],
+            ["Riwayat Keluarga", ""],
+            ["Tuberkulosis (TBC)", document.getElementById('famTb').value],
             ["Diabetes", document.getElementById('famDiabetes').value],
             ["Hepatitis", document.getElementById('famHep').value],
-            ["Asthma", document.getElementById('famAsthma').value],
+            ["Asma", document.getElementById('famAsthma').value],
 
-            ["Physical Checkup & Vitals", ""],
-            ["Height / Weight", `${document.getElementById('height').value} cm / ${document.getElementById('weight').value} kg`],
-            ["Blood Pressure", document.getElementById('bp').value],
-            ["Heart Rate", `${document.getElementById('hr').value} bpm`],
-            ["Body Temp", `${document.getElementById('temp').value} °C`],
+            ["Pemeriksaan Fisik & Tanda Vital", ""],
+            ["Tinggi / Berat Badan", `${document.getElementById('height').value} cm / ${document.getElementById('weight').value} kg`],
+            ["Tekanan Darah", document.getElementById('bp').value],
+            ["Denyut Jantung", `${document.getElementById('hr').value} bpm`],
+            ["Suhu Tubuh", `${document.getElementById('temp').value} °C`],
 
-            ["Remarks", document.getElementById('remarks').value || "None"]
+            ["Catatan Tambahan", document.getElementById('remarks').value || "Tidak ada"]
         ];
 
         doc.autoTable({
@@ -230,37 +230,37 @@ document.addEventListener('DOMContentLoaded', async () => {
             doc.setFontSize(18);
             doc.text("SMK-SMTI Pontianak", 105, 20, null, null, "center");
             doc.setFontSize(14);
-            doc.text("Student Medical History Report", 105, 30, null, null, "center");
+            doc.text("Laporan Riwayat Medis Siswa", 105, 30, null, null, "center");
 
             const data = [
-                ["Personal Information", ""],
-                ["Name", row.name],
-                ["Place & Date of Birth", `${row.placeOfBirth}, ${row.dateOfBirth}`],
-                ["Age", row.age.toString()],
-                ["Gender", row.gender],
+                ["Informasi Pribadi", ""],
+                ["Nama", row.name],
+                ["Tempat & Tanggal Lahir", `${row.placeOfBirth}, ${row.dateOfBirth}`],
+                ["Umur", row.age.toString()],
+                ["Jenis Kelamin", row.gender],
 
-                ["Medical History", ""],
-                ["Allergies", row.allergies || "None"],
-                ["Severe Injuries", row.injuries || "None"],
-                ["Past Seizures", row.seizures],
-                ["Blood Transfusions", row.transfusions],
-                ["Congenital Diseases", row.congenital || "None"],
-                ["Other Symptoms", row.otherSymptoms || "None"],
-                ["Vaccinations", row.vaccinations || "None"],
+                ["Riwayat Medis", ""],
+                ["Alergi", row.allergies || "Tidak ada"],
+                ["Cedera Parah Sebelumnya", row.injuries || "Tidak ada"],
+                ["Riwayat Kejang", row.seizures],
+                ["Riwayat Transfusi Darah", row.transfusions],
+                ["Penyakit Bawaan", row.congenital || "Tidak ada"],
+                ["Gejala Lainnya", row.otherSymptoms || "Tidak ada"],
+                ["Riwayat Vaksinasi", row.vaccinations || "Tidak ada"],
 
-                ["Family History", ""],
-                ["Tuberculosis (TB)", row.famTb],
+                ["Riwayat Keluarga", ""],
+                ["Tuberkulosis (TBC)", row.famTb],
                 ["Diabetes", row.famDiabetes],
                 ["Hepatitis", row.famHep],
-                ["Asthma", row.famAsthma],
+                ["Asma", row.famAsthma],
 
-                ["Physical Checkup & Vitals", ""],
-                ["Height / Weight", `${row.height} cm / ${row.weight} kg`],
-                ["Blood Pressure", row.bp],
-                ["Heart Rate", `${row.hr} bpm`],
-                ["Body Temp", `${row.temp} °C`],
+                ["Pemeriksaan Fisik & Tanda Vital", ""],
+                ["Tinggi / Berat Badan", `${row.height} cm / ${row.weight} kg`],
+                ["Tekanan Darah", row.bp],
+                ["Denyut Jantung", `${row.hr} bpm`],
+                ["Suhu Tubuh", `${row.temp} °C`],
 
-                ["Remarks", row.remarks || "None"]
+                ["Catatan Tambahan", row.remarks || "Tidak ada"]
             ];
 
             doc.autoTable({
@@ -282,7 +282,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // 6. DB Reset
     document.getElementById('btn-reset-db').addEventListener('click', () => {
-        if (confirm("Are you sure you want to delete all database records? This cannot be undone.")) {
+        if (confirm("Apakah Anda yakin ingin menghapus semua catatan database? Tindakan ini tidak dapat dibatalkan.")) {
             localStorage.removeItem('sqliteDb');
             location.reload();
         }
