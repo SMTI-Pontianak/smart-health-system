@@ -25,6 +25,14 @@ document.addEventListener('DOMContentLoaded', async () => {
         loadRecords();
     });
 
+    // 1b. BPJS toggle
+    const hasBpjsSelect = document.getElementById('hasBpjs');
+    const bpjsGroup = document.getElementById('bpjs-group');
+    hasBpjsSelect.addEventListener('change', () => {
+        bpjsGroup.style.display = hasBpjsSelect.value === 'Yes' ? 'block' : 'none';
+        if (hasBpjsSelect.value === 'No') document.getElementById('nomorBpjs').value = '';
+    });
+
     // 2. Initialize SQL.js Database
     let db;
     try {
@@ -67,7 +75,9 @@ document.addEventListener('DOMContentLoaded', async () => {
                 bp TEXT,
                 hr INTEGER,
                 temp REAL,
-                remarks TEXT
+                remarks TEXT,
+                kelas TEXT,
+                nomorBpjs TEXT
             );
         `);
         console.log("Database diinisialisasi.");
@@ -111,15 +121,17 @@ document.addEventListener('DOMContentLoaded', async () => {
             document.getElementById('bp').value,
             document.getElementById('hr').value,
             document.getElementById('temp').value,
-            document.getElementById('remarks').value || ''
+            document.getElementById('remarks').value || '',
+            document.getElementById('kelas').value,
+            document.getElementById('hasBpjs').value === 'Yes' ? document.getElementById('nomorBpjs').value : ''
         ];
 
         try {
             db.run(`INSERT INTO medical_history (
                 name, placeOfBirth, dateOfBirth, age, gender, allergies, injuries, seizures, transfusions,
                 congenital, otherSymptoms, vaccinations, famTb, famDiabetes, famHep, famAsthma,
-                height, weight, bp, hr, temp, remarks
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`, values);
+                height, weight, bp, hr, temp, remarks, kelas, nomorBpjs
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`, values);
             saveDatabase();
             alert("Catatan berhasil disimpan ke database SQL!");
             form.reset();
@@ -176,6 +188,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             ["Tempat & Tanggal Lahir", `${document.getElementById('placeOfBirth').value}, ${document.getElementById('dateOfBirth').value}`],
             ["Umur", document.getElementById('age').value],
             ["Jenis Kelamin", document.getElementById('gender').value],
+            ["Kelas", document.getElementById('kelas').value],
+            ["Nomor BPJS", document.getElementById('hasBpjs').value === 'Yes' ? (document.getElementById('nomorBpjs').value || 'Tidak diisi') : 'Tidak ada'],
 
             ["Riwayat Medis", ""],
             ["Alergi", document.getElementById('allergies').value || "Tidak ada"],
@@ -238,6 +252,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                 ["Tempat & Tanggal Lahir", `${row.placeOfBirth}, ${row.dateOfBirth}`],
                 ["Umur", row.age.toString()],
                 ["Jenis Kelamin", row.gender],
+                ["Kelas", row.kelas || '-'],
+                ["Nomor BPJS", row.nomorBpjs || 'Tidak ada'],
 
                 ["Riwayat Medis", ""],
                 ["Alergi", row.allergies || "Tidak ada"],

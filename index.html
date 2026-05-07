@@ -87,6 +87,21 @@
                                     <option value="Female">Perempuan</option>
                                 </select>
                             </div>
+                            <div class="form-group">
+                                <label for="kelas">Kelas</label>
+                                <input type="text" id="kelas" required placeholder="mis. X RPL 1">
+                            </div>
+                            <div class="form-group">
+                                <label for="hasBpjs">Apakah kamu punya Nomor BPJS?</label>
+                                <select id="hasBpjs">
+                                    <option value="No">Tidak</option>
+                                    <option value="Yes">Ya</option>
+                                </select>
+                            </div>
+                            <div class="form-group" id="bpjs-group" style="display: none;">
+                                <label for="nomorBpjs">Nomor BPJS</label>
+                                <input type="text" id="nomorBpjs" placeholder="mis. 0001234567890">
+                            </div>
                         </div>
                     </div>
 
